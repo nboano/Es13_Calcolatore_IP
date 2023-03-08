@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCOLATORE IP</title>
+
+    <script src="lib/KinderC-master/kinderc.js"></script>
+    <assembly src="main.wasm"></assembly>
+
+    <style>
+        table {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><label for="txtIndirizzo">INDIRIZZO IP</label></td>
+            <td><input type="text" id="txtIndirizzo" value="192.168.0.1" /></td>
+        </tr>
+        <tr>
+            <td><label for="txtSubnet">SUBNET MASK</label></td>
+            <td><input type="text" id="txtSubnet" value="255.255.255.0" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button onclick="calcola()">OK</button></td>
+        </tr>
+    </table>
+    
+    <br>
+
+</body>
+</html>

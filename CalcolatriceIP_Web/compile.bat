@@ -1,0 +1,1 @@
+lib/KinderC-master/kccompile main.cpp main.wasm
