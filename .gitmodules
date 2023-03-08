@@ -1,0 +1,6 @@
+[submodule "CalcolatriceIP_Web/lib/KinderC"]
+	path = CalcolatriceIP_Web/lib/KinderC
+	url = https://github.com/nboano/KinderC.git
+[submodule "CalcolatriceIP_Console/lib/UTILITY_C"]
+	path = CalcolatriceIP_Console/lib/UTILITY_C
+	url = https://github.com/nboano/UTILITY_C.git
