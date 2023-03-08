@@ -1,1 +1,1 @@
-lib/KinderC-master/kccompile main.cpp main.wasm
+lib/KinderC/kccompile main.cpp main.wasm

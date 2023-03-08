@@ -1,4 +1,4 @@
-#include "lib/KinderC-master/kinderc.hpp"
+#include "lib/KinderC/kinderc.hpp"
 #include "../IPAddress.c"
 
 int main() {
