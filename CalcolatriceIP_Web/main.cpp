@@ -1,30 +1,35 @@
 #include "lib/KinderC/kinderc.hpp"
 #include "../IPAddress.c"
 
-int main() {
+exported void calcola();
 
+int main() {
+    calcola();
 }
 
 #define txtIndirizzo HTMLInputElement($("#txtIndirizzo"))
 #define txtSubnet HTMLInputElement($("#txtSubnet"))
 
-exported void calcola() {
+void calcola() {
 
     const char* locale = txtIndirizzo.value;
     const char* subnet = txtSubnet.value;
 
     if(!IpValid(locale)) {
-        alert("L'indirizzo di rete digitato non e' valido. Riprova.");
+        txtIndirizzo.style["color"] = "red";
         return;
     }
 
     if(!IpValid(subnet)) {
-        alert("La maschera di sottorete digitata non e' valida. Riprova.");
+        txtSubnet.style["color"] = "red";
         return;
     }
 
-    IpAddress iplocale = IpFromString(txtIndirizzo.value);
-    IpAddress subnetmask = IpFromString(txtSubnet.value);
+    txtIndirizzo.style["color"] = "black";
+    txtSubnet.style["color"] = "black";
+
+    IpAddress iplocale = IpFromString(locale);
+    IpAddress subnetmask = IpFromString(subnet);
 
     free((void*)locale);
     free((void*)subnet);
@@ -33,6 +38,9 @@ exported void calcola() {
     IpAddress wildcardmask = OttieniWildcardMask(subnetmask);
     IpAddress indirizzo_broadcast = OttieniIndirizzoBroadcast(iplocale, wildcardmask);
 
+    IpAddress first = IntToIp(IpToInt(indirizzo_rete) + 1);
+    IpAddress last = IntToIp(IpToInt(indirizzo_broadcast) - 1);
+    
     int pref_sottorete = LunghPrefissoSottorete(subnetmask);
     int max_n_host = MassimoNumHost(wildcardmask);
 
@@ -40,29 +48,27 @@ exported void calcola() {
 
     char buffer_ip[50];
 
-    printf("<br><b>INDIRIZZO IP:</b> %s<br>", IpToString(iplocale, buffer_ip));
-    printf("<small><i>%s</i></small>", IpToBinaryString(iplocale, buffer_ip));
+    $("#indirizzo-ip").setAttribute("value", IpToString(iplocale, buffer_ip));
+    $("#indirizzo-ip-bin").innerText = IpToBinaryString(iplocale, buffer_ip);
 
-    printf("<br><b>SUBNET MASK:</b> %s<br>", IpToString(subnetmask, buffer_ip));
-    printf("<small><i>%s</i></small>", IpToBinaryString(subnetmask, buffer_ip));
+    $("#subnet-mask").setAttribute("value", 
+        String::Format("%s/%i", IpToString(subnetmask, buffer_ip), pref_sottorete)
+    );
+    $("#subnet-mask-bin").innerText = IpToBinaryString(subnetmask, buffer_ip);
 
-    printf("<br><b>LUNGHEZZA PREF. SOTTORETE: </b> %i<br>", pref_sottorete);
-    printf("<br><b>MASSIMO NUMERO DI HOST: </b> %i<br>", max_n_host);
 
-    printf("<br><b>INDIRIZZO DI RETE:</b> %s<br>", IpToString(indirizzo_rete, buffer_ip));
+    $("#indirizzo-rete").setAttribute("value", IpToString(indirizzo_rete, buffer_ip));
+    $("#indirizzo-rete-bin").innerText = IpToBinaryString(indirizzo_rete, buffer_ip);
 
-    printf("<br><b>WILDCARD MASK:</b> %s<br>", IpToString(wildcardmask, buffer_ip));
+    $("#indirizzo-broadcast").setAttribute("value", IpToString(indirizzo_broadcast, buffer_ip));
+    $("#indirizzo-broadcast-bin").innerText = IpToBinaryString(indirizzo_broadcast, buffer_ip);
 
-    printf("<br><b>INDIRIZZO BROADCAST:</b> %s<br>", IpToString(indirizzo_broadcast, buffer_ip));
+    $("#wildcard-mask").setAttribute("value", IpToString(wildcardmask, buffer_ip));
+    $("#wildcard-mask-bin").innerText = IpToBinaryString(wildcardmask, buffer_ip);
 
-    printf("<br><b>CLASSE IP:</b> %c<br>", (char)classe_ip);
+    $("#max-n-host").setAttribute("value", String::Format("%i", max_n_host));
+    $("#classe-ip").setAttribute("value", String::Format("%c", classe_ip));
 
-    // unsigned int start = *((unsigned int*)&iplocale);
-    // unsigned int end = *((unsigned int*)&indirizzo_broadcast);
-
-    // for (unsigned int i = start; i < end; i++)
-    // {
-    //     printf("%s<br>", IpToString(*((IpAddress*)&i), buffer_ip));
-    // }
-    
+    $("#ip-start").innerText = IpToString(first, buffer_ip);
+    $("#ip-end").innerText = IpToString(last, buffer_ip);
 }

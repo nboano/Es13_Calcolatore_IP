@@ -10,27 +10,98 @@
     <assembly src="main.wasm"></assembly>
 
     <style>
-        table {
+        body {
+            font-family: sans-serif;
+        }
+
+        table.tbMain {
             border: 0;
+            background-color: lightblue;
+            padding: 8px;
+            border-radius: 5px;
+            
+            margin: 20px auto;
+        }
+
+        input.param {
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        code {
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <table>
+    <table class="tbMain">
+        <tr>
+            <th colspan="2"><hr> CALCOLATORE IP <hr></th>
+        </tr>
         <tr>
             <td><label for="txtIndirizzo">INDIRIZZO IP</label></td>
-            <td><input type="text" id="txtIndirizzo" value="192.168.0.1" /></td>
+            <td><input type="text" id="txtIndirizzo" value="192.168.0.1" onkeydown="calcola();"/></td>
         </tr>
         <tr>
             <td><label for="txtSubnet">SUBNET MASK</label></td>
-            <td><input type="text" id="txtSubnet" value="255.255.255.0" /></td>
+            <td><input type="text" id="txtSubnet" value="255.255.255.0" onkeydown="calcola();"/></td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="2"><hr></td>
         </tr>
         <tr>
-            <td colspan="2"><button onclick="calcola()">OK</button></td>
+            <td><b>INDIRIZZO IP</b></td>
+            <td><input class="param" disabled id="indirizzo-ip"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><code id="indirizzo-ip-bin"></code></td>
+        </tr>
+        <tr>
+            <td><b>SUBNET MASK</b></td>
+            <td><input class="param" disabled id="subnet-mask"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><code id="subnet-mask-bin"></code></td>
+        </tr>
+        <tr>
+            <td><b>WILDCARD MASK</b></td>
+            <td><input class="param" disabled id="wildcard-mask"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><code id="wildcard-mask-bin"></code></td>
+        </tr>
+        <tr>
+            <th colspan="2"><hr></th>
+        </tr>
+        <tr>
+            <td><b>INDIRIZZO RETE</b></td>
+            <td><input class="param" disabled id="indirizzo-rete"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><code id="indirizzo-rete-bin"></code></td>
+        </tr>
+        <tr>
+            <td><b>BROADCAST</b></td>
+            <td><input class="param" disabled id="indirizzo-broadcast"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><code id="indirizzo-broadcast-bin"></code></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <hr>
+                da <b id="ip-start"></b> a <b id="ip-end"></b>
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td><b>MAX N. HOST</b></td>
+            <td><input class="param" disabled id="max-n-host"></span></td>
+        </tr>
+        <tr>
+            <td><b>CLASSE IP</b></td>
+            <td><input class="param" disabled id="classe-ip"></span></td>
         </tr>
     </table>
-    
-    <br>
-
 </body>
 </html>
