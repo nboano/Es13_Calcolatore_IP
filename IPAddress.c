@@ -48,44 +48,27 @@ int split(const char* s, char separ, char v[MAX_SPLIT][MAX_STR]) {
 	return j;
 }
 
+unsigned int IpToInt(IpAddress ip) {
+    return *(unsigned int*)&ip;
+}
+
+IpAddress IntToIp(unsigned int n) {
+    return *(IpAddress*)&n;
+}
+
 /// @brief Ottiene l'indirizzo di rete da un'IP di rete e la subnet mask.
 IpAddress OttieniIndirizzoRete(IpAddress ipLocale, IpAddress subnetMask) {
-    IpAddress netaddr;
-
-    netaddr.byte1 = ipLocale.byte1 & subnetMask.byte1;
-    netaddr.byte2 = ipLocale.byte2 & subnetMask.byte2;
-    netaddr.byte3 = ipLocale.byte3 & subnetMask.byte3;
-    netaddr.byte4 = ipLocale.byte4 & subnetMask.byte4;
-
-    return netaddr;
-
-    // IN ALTERNATIVA
-    // unsigned int netaddr_i = *((unsigned int*)&ipLocale) & *((unsigned int*)&subnetMask);
-    // return *((IpAddress*)&netaddr_i);
+    return IntToIp(IpToInt(ipLocale) & IpToInt(subnetMask));
 }
 
 /// @brief Ottiene l'indirizzo di broadcast da un'IP di rete e la wildcard mask.
 IpAddress OttieniIndirizzoBroadcast(IpAddress ipLocale, IpAddress wildcardMask) {
-    IpAddress netaddr;
-
-    netaddr.byte1 = ipLocale.byte1 | wildcardMask.byte1;
-    netaddr.byte2 = ipLocale.byte2 | wildcardMask.byte2;
-    netaddr.byte3 = ipLocale.byte3 | wildcardMask.byte3;
-    netaddr.byte4 = ipLocale.byte4 | wildcardMask.byte4;
-
-    return netaddr;
+    return IntToIp(IpToInt(ipLocale) | IpToInt(wildcardMask));
 }
 
 /// @brief Ottiene la wildcard mask dalla subnet mask.
 IpAddress OttieniWildcardMask(IpAddress subnetmask) {
-    IpAddress wildcard;
-
-    wildcard.byte1 = ~subnetmask.byte1;
-    wildcard.byte2 = ~subnetmask.byte2;
-    wildcard.byte3 = ~subnetmask.byte3;
-    wildcard.byte4 = ~subnetmask.byte4;
-
-    return wildcard;
+    return IntToIp(~IpToInt(subnetmask));;
 }
 
 /// @brief Ottiene la classe di un'IP in input.

@@ -1,18 +1,18 @@
 # depslib dependency file v1.0
-1678219589 source:d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\main.c
+1678262522 source:d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\main.c
 	<stdio.h>
 	<stdlib.h>
-	"../IPAddress.c"
 	"lib/UTILITY_C/utilities.h"
+	"../IPAddress.c"
 
-1678219875 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\ipaddress.c
+1678310860 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\ipaddress.c
 	<stdio.h>
 	<stdlib.h>
 	<malloc.h>
 	<stdbool.h>
 	<string.h>
 
-1674592923 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\utilities.h
+1678262830 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\utilities.h
 	<winsock2.h>
 	<ws2tcpip.h>
 	<stdio.h>
@@ -25,13 +25,13 @@
 	"socket.c"
 	"utilities.c"
 
-1674592285 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\llist.c
+1678262830 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\llist.c
 
-1674592129 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\socket.c
+1678262830 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\socket.c
 	<winsock2.h>
 	<ws2tcpip.h>
 
-1674588635 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\utilities.c
+1678262830 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\lib\utility_c\utilities.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
