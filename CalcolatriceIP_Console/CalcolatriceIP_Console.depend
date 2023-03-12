@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1678262522 source:d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\main.c
+1678614151 source:d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\calcolatriceip_console\main.c
 	<stdio.h>
 	<stdlib.h>
 	"lib/UTILITY_C/utilities.h"
 	"../IPAddress.c"
 
-1678310860 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\ipaddress.c
+1678613375 d:\documenti\sincronizzati\boano_4c\sistemi\es13_calcolatore_ip\ipaddress.c
 	<stdio.h>
 	<stdlib.h>
 	<malloc.h>

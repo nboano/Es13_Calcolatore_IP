@@ -12,6 +12,11 @@ int main() {
 
 void calcola() {
 
+    // Pulisco tutti i risultati
+    $$(".param").setAttribute("value", "");
+    $$(".result").innerHTML = "";
+    
+
     const char* locale = txtIndirizzo.value;
     const char* subnet = txtSubnet.value;
 
@@ -33,6 +38,11 @@ void calcola() {
 
     free((void*)locale);
     free((void*)subnet);
+
+    if(!SubnetMaskValid(subnetmask)) {
+        txtSubnet.style["color"] = "red";
+        return;
+    }
 
     IpAddress indirizzo_rete = OttieniIndirizzoRete(iplocale, subnetmask);
     IpAddress wildcardmask = OttieniWildcardMask(subnetmask);
@@ -69,6 +79,13 @@ void calcola() {
     $("#max-n-host").setAttribute("value", String::Format("%i", max_n_host));
     $("#classe-ip").setAttribute("value", String::Format("%c", classe_ip));
 
-    $("#ip-start").innerText = IpToString(first, buffer_ip);
-    $("#ip-end").innerText = IpToString(last, buffer_ip);
+    if(max_n_host > 0) {
+        $("#ip-start").innerText = IpToString(first, buffer_ip);
+        $("#ip-end").innerText = IpToString(last, buffer_ip);
+    } else {
+        $("#ip-start").innerText = "N/D";
+        $("#ip-end").innerText = "N/D";
+    }
+
+    $("#status-ip").setAttribute("value", IpStatus(iplocale));
 }

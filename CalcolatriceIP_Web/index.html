@@ -23,6 +23,11 @@
             margin: 20px auto;
         }
 
+        input {
+            border-radius: 5px;
+            border: 1px solid grey;
+        }
+
         input.param {
             font-family: monospace;
             font-weight: bold;
@@ -51,56 +56,60 @@
         </tr>
         <tr>
             <td><b>INDIRIZZO IP</b></td>
-            <td><input class="param" disabled id="indirizzo-ip"></span></td>
+            <td><input class="param" disabled id="indirizzo-ip"></td>
         </tr>
         <tr>
-            <td colspan="2"><code id="indirizzo-ip-bin"></code></td>
+            <td colspan="2"><code id="indirizzo-ip-bin" class="result"></code></td>
         </tr>
         <tr>
             <td><b>SUBNET MASK</b></td>
-            <td><input class="param" disabled id="subnet-mask"></span></td>
+            <td><input class="param" disabled id="subnet-mask"></td>
         </tr>
         <tr>
-            <td colspan="2"><code id="subnet-mask-bin"></code></td>
+            <td colspan="2"><code id="subnet-mask-bin" class="result"></code></td>
         </tr>
         <tr>
             <td><b>WILDCARD MASK</b></td>
-            <td><input class="param" disabled id="wildcard-mask"></span></td>
+            <td><input class="param" disabled id="wildcard-mask"></td>
         </tr>
         <tr>
-            <td colspan="2"><code id="wildcard-mask-bin"></code></td>
+            <td colspan="2"><code id="wildcard-mask-bin" class="result"></code></td>
         </tr>
         <tr>
             <th colspan="2"><hr></th>
         </tr>
         <tr>
             <td><b>INDIRIZZO RETE</b></td>
-            <td><input class="param" disabled id="indirizzo-rete"></span></td>
+            <td><input class="param" disabled id="indirizzo-rete" class="result"></td>
         </tr>
         <tr>
-            <td colspan="2"><code id="indirizzo-rete-bin"></code></td>
+            <td colspan="2"><code id="indirizzo-rete-bin" class="result"></code></td>
         </tr>
         <tr>
             <td><b>BROADCAST</b></td>
-            <td><input class="param" disabled id="indirizzo-broadcast"></span></td>
+            <td><input class="param" disabled id="indirizzo-broadcast" class="result"></span></td>
         </tr>
         <tr>
-            <td colspan="2"><code id="indirizzo-broadcast-bin"></code></td>
+            <td colspan="2"><code id="indirizzo-broadcast-bin" class="result"></code></td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;">
                 <hr>
-                da <b id="ip-start"></b> a <b id="ip-end"></b>
+                da <b id="ip-start" class="result">...</b> a <b id="ip-end" class="result"></b>
                 <hr>
             </td>
         </tr>
         <tr>
             <td><b>MAX N. HOST</b></td>
-            <td><input class="param" disabled id="max-n-host"></span></td>
+            <td><input class="param" disabled id="max-n-host"></td>
         </tr>
         <tr>
             <td><b>CLASSE IP</b></td>
-            <td><input class="param" disabled id="classe-ip"></span></td>
+            <td><input class="param" disabled id="classe-ip"></td>
+        </tr>
+        <tr>
+            <td><b>STATUS IP</b></td>
+            <td><input class="param" disabled id="status-ip"></i></td>
         </tr>
     </table>
 </body>

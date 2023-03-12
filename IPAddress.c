@@ -122,6 +122,8 @@ IpAddress IpFromString(const char* str) {
     IpAddress addr;
 
     char spl[MAX_SPLIT][MAX_STR];
+    memset(spl, 0, MAX_SPLIT * MAX_STR);
+
     split(str, '.', spl);
 
     addr.byte1 = atoi(spl[0]);
@@ -147,7 +149,7 @@ int LunghPrefissoSottorete(IpAddress subnetmask) {
 
 /// @brief Ottiene il massimo numero di host in una rete, data la wildcard mask.
 int MassimoNumHost(IpAddress wildcardmask) {
-    return ((wildcardmask.byte1 | 1) * (wildcardmask.byte2 | 1) * (wildcardmask.byte3 | 1) * (wildcardmask.byte4 | 1)) - 2;
+    return ((wildcardmask.byte1 | 1) * (wildcardmask.byte2 | 1) * (wildcardmask.byte3 | 1) * (wildcardmask.byte4 | 1)) - 1;
 }
 
 /// @brief Controlla se un'IP è valido.
@@ -168,6 +170,9 @@ bool IpValid(const char* str) {
     if(contapunti != 3) return false;
 
     char spl[MAX_SPLIT][MAX_STR];
+
+    memset(spl, 0, MAX_SPLIT * MAX_STR);
+
     split(str, '.', spl);
 
     if(
@@ -177,4 +182,45 @@ bool IpValid(const char* str) {
         atoi(spl[3]) > 255 || atoi(spl[3]) < 0
     ) return false; 
     else return true;
+}
+
+bool subnet_byte_check(unsigned char byte) {
+    return
+        byte == 0b11111111 ||
+        byte == 0b11111110 ||
+        byte == 0b11111100 ||
+        byte == 0b11111000 ||
+        byte == 0b11110000 ||
+        byte == 0b11100000 ||
+        byte == 0b11000000 ||
+        byte == 0b10000000 ||
+        byte == 0b00000000
+    ;
+}
+
+
+/// @brief Controlla se una maschera di sottorete è valida.
+bool SubnetMaskValid(IpAddress sMask) {
+    return
+        subnet_byte_check(sMask.byte1) &&
+        subnet_byte_check(sMask.byte2) &&
+        subnet_byte_check(sMask.byte3) &&
+        subnet_byte_check(sMask.byte4)
+    ;
+}
+
+const char* IpStatus(IpAddress ip) {
+    if(
+        ip.byte1 == 10 ||
+        (ip.byte1 == 192 && ip.byte2 == 168) ||
+        (ip.byte1 == 172 && ip.byte2 >= 16 && ip.byte2 <= 31) ||
+        (ip.byte1 == 100 && ip.byte2 >= 64 && ip.byte2 <= 127)
+    )
+        return "LOCALE";
+    else if(ip.byte1 == 169 && ip.byte2 == 254) 
+        return "AUTOASSEGNATO";
+    else if(ip.byte1 == 127)
+        return "LOOPBACK";
+    else 
+        return "PUBBLICO";
 }

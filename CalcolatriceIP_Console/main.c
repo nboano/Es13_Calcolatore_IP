@@ -32,6 +32,11 @@ int main()
     IpAddress iplocale = IpFromString(input_ip);
     IpAddress subnetmask = IpFromString(input_sm);
 
+    if(!SubnetMaskValid(subnetmask)) {
+        MsgBox.Error("Maschera di sottorete non valida!", "ERRORE INPUT");
+        main();
+    }
+
     IpAddress indirizzo_rete = OttieniIndirizzoRete(iplocale, subnetmask);
     IpAddress wildcardmask = OttieniWildcardMask(subnetmask);
     IpAddress indirizzo_broadcast = OttieniIndirizzoBroadcast(iplocale, wildcardmask);
@@ -90,6 +95,11 @@ int main()
     printf("%-20s", "CLASSE");
     Color.Set(Color.Purple);
     printf("%-20c\n", classe_ip);
+
+    Color.Reset();
+    printf("%-20s", "TIPO IP");
+    Color.Set(Color.Green);
+    printf("%-20s", IpStatus(iplocale));
 
     Color.Reset();
     printf("%-20s", "RANGE INDIRIZZI");
