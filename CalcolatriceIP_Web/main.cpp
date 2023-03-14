@@ -77,6 +77,7 @@ void calcola() {
     $("#wildcard-mask-bin").innerText = IpToBinaryString(wildcardmask, buffer_ip);
 
     $("#max-n-host").setAttribute("value", String::Format("%i", max_n_host));
+    $("#max-sottoreti").setAttribute("value", String::Format("%i", MaxSottoreti(indirizzo_rete, indirizzo_broadcast)));
     $("#classe-ip").setAttribute("value", String::Format("%c", classe_ip));
 
     if(max_n_host > 0) {

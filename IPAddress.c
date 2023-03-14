@@ -224,3 +224,8 @@ const char* IpStatus(IpAddress ip) {
     else 
         return "PUBBLICO";
 }
+
+int MaxSottoreti(IpAddress indirizzo_rete, IpAddress indirizzo_broadcast) {
+    unsigned int differenza = IpToInt(indirizzo_broadcast) - IpToInt(indirizzo_rete);
+    return (differenza / 256) | 1;
+}
