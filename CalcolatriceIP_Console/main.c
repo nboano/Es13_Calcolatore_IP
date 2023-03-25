@@ -111,7 +111,7 @@ int main()
     Color.Reset();
     printf("%-20s", "MAX SOTTORETI");
     Color.Set(Color.Aqua);
-    printf("%i\n", MaxSottoreti(indirizzo_rete, indirizzo_broadcast));
+    printf("%i\n", MaxSottoreti(wildcardmask));
 
 
     Color.Reset();

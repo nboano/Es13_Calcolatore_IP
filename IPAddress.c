@@ -225,7 +225,8 @@ const char* IpStatus(IpAddress ip) {
         return "PUBBLICO";
 }
 
-int MaxSottoreti(IpAddress indirizzo_rete, IpAddress indirizzo_broadcast) {
-    unsigned int differenza = IpToInt(indirizzo_broadcast) - IpToInt(indirizzo_rete);
-    return (differenza / 256) | 1;
+int MaxSottoreti(IpAddress wildcard) {
+    int ns = (256 / (MassimoNumHost(wildcard) + 2));
+    if(ns == 0) return 1;
+    else        return ns;
 }
